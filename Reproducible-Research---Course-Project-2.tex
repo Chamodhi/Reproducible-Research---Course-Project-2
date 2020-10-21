@@ -1,0 +1,622 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Reproducible Research - Course Project 2},
+  pdfauthor={Chamodhi Wickramasinghe},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Reproducible Research - Course Project 2}
+\author{Chamodhi Wickramasinghe}
+\date{10/21/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exploring-the-u.s.-national-oceanic-and-atmospheric-administrations-noaa-storm-database---health-and-economic-impacts}{%
+\subsubsection{Exploring the U.S. National Oceanic and Atmospheric
+Administration's (NOAA) storm database - Health and Economic
+Impacts}\label{exploring-the-u.s.-national-oceanic-and-atmospheric-administrations-noaa-storm-database---health-and-economic-impacts}}
+
+\hypertarget{synopsis}{%
+\subsection{Synopsis}\label{synopsis}}
+
+This is a second course project for Reproducible Research course which
+is part of the Coursera's Data Science Specialization.
+
+Storms and other severe weather events can cause both public health and
+economic problems for communities and municipalities. Many severe events
+can result in fatalities, injuries, and property damage, and preventing
+such outcomes to the extent possible is a key concern.
+
+This project involves exploring the U.S. National Oceanic and
+Atmospheric Administration's (NOAA) storm database. This database tracks
+characteristics of major storms and weather events in the United States,
+including when and where they occur, as well as estimates of any
+fatalities, injuries, and property damage.
+
+The analysis of the data shows that tornadoes, by far, have the greatest
+health impact as measured by the number of injuries and fatalities The
+analysis also shows that floods cause the greatest economic impact as
+measured by property damage and crop damage.
+
+\hypertarget{data-processing}{%
+\subsection{Data Processing}\label{data-processing}}
+
+\hypertarget{load-libraries-and-prepare-the-r-environment}{%
+\subsection{Load Libraries and prepare the R
+environment}\label{load-libraries-and-prepare-the-r-environment}}
+
+\hypertarget{data}{%
+\subsection{Data}\label{data}}
+
+The data for this assignment come in the form of a comma-separated-value
+file compressed via the bzip2 algorithm to reduce its size. You can
+download the file from the course web site:
+
+storm data{[}47Mb{]}
+
+There is also some documentation of the database available. Here you
+will find how some of the variables are constructed/defined.
+
+National Weather Service Storm Data Documentation
+
+National Climatic Data Center Storm Events FAQ
+
+The events in the database start in the year 1950 and end in November
+2011. In the earlier years of the database there are generally fewer
+events recorded, most likely due to a lack of good records. More recent
+years should be considered more complete.
+
+\hypertarget{assignment}{%
+\subsection{Assignment}\label{assignment}}
+
+The basic goal of this assignment is to explore the NOAA Storm Database
+and answer the following basic questions about severe weather events.
+
+Across the United States, which types of events (as indicated in the
+EVTYPE variable) are most harmful with respect to population health?
+Across the United States, which types of events have the greatest
+economic consequences?
+
+\hypertarget{loading-the-data}{%
+\subsection{Loading the data}\label{loading-the-data}}
+
+The data was downloaded from the link above and saved on local computer
+(in setwd command one can replace loacal file path with path of folder
+where the data was downloaded). Then it was loaded on the R using the
+read.csv command. If object strom.data is already loaded, use that
+cached object insted of loading it each time the Rmd file is knitted.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{exists}\NormalTok{(}\StringTok{"storm.data"}\NormalTok{)) \{}
+\NormalTok{    storm.data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\KeywordTok{bzfile}\NormalTok{(}\StringTok{"repdata_data_StormData.csv.bz2"}\NormalTok{),}\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  \}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{examine-the-data-set}{%
+\subsection{Examine the data set}\label{examine-the-data-set}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(storm.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 902297     37
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(storm.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    902297 obs. of  37 variables:
+##  $ STATE__   : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ BGN_DATE  : chr  "4/18/1950 0:00:00" "4/18/1950 0:00:00" "2/20/1951 0:00:00" "6/8/1951 0:00:00" ...
+##  $ BGN_TIME  : chr  "0130" "0145" "1600" "0900" ...
+##  $ TIME_ZONE : chr  "CST" "CST" "CST" "CST" ...
+##  $ COUNTY    : num  97 3 57 89 43 77 9 123 125 57 ...
+##  $ COUNTYNAME: chr  "MOBILE" "BALDWIN" "FAYETTE" "MADISON" ...
+##  $ STATE     : chr  "AL" "AL" "AL" "AL" ...
+##  $ EVTYPE    : chr  "TORNADO" "TORNADO" "TORNADO" "TORNADO" ...
+##  $ BGN_RANGE : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ BGN_AZI   : chr  "" "" "" "" ...
+##  $ BGN_LOCATI: chr  "" "" "" "" ...
+##  $ END_DATE  : chr  "" "" "" "" ...
+##  $ END_TIME  : chr  "" "" "" "" ...
+##  $ COUNTY_END: num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ COUNTYENDN: logi  NA NA NA NA NA NA ...
+##  $ END_RANGE : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ END_AZI   : chr  "" "" "" "" ...
+##  $ END_LOCATI: chr  "" "" "" "" ...
+##  $ LENGTH    : num  14 2 0.1 0 0 1.5 1.5 0 3.3 2.3 ...
+##  $ WIDTH     : num  100 150 123 100 150 177 33 33 100 100 ...
+##  $ F         : int  3 2 2 2 2 2 2 1 3 3 ...
+##  $ MAG       : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ FATALITIES: num  0 0 0 0 0 0 0 0 1 0 ...
+##  $ INJURIES  : num  15 0 2 2 2 6 1 0 14 0 ...
+##  $ PROPDMG   : num  25 2.5 25 2.5 2.5 2.5 2.5 2.5 25 25 ...
+##  $ PROPDMGEXP: chr  "K" "K" "K" "K" ...
+##  $ CROPDMG   : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ CROPDMGEXP: chr  "" "" "" "" ...
+##  $ WFO       : chr  "" "" "" "" ...
+##  $ STATEOFFIC: chr  "" "" "" "" ...
+##  $ ZONENAMES : chr  "" "" "" "" ...
+##  $ LATITUDE  : num  3040 3042 3340 3458 3412 ...
+##  $ LONGITUDE : num  8812 8755 8742 8626 8642 ...
+##  $ LATITUDE_E: num  3051 0 0 0 0 ...
+##  $ LONGITUDE_: num  8806 0 0 0 0 ...
+##  $ REMARKS   : chr  "" "" "" "" ...
+##  $ REFNUM    : num  1 2 3 4 5 6 7 8 9 10 ...
+\end{verbatim}
+
+\hypertarget{extracting-variables-of-interest-for-analysis-of-weather-impact-on-health-and-economy}{%
+\subsection{Extracting variables of interest for analysis of weather
+impact on health and
+economy}\label{extracting-variables-of-interest-for-analysis-of-weather-impact-on-health-and-economy}}
+
+From a list of variables in storm.data, these are columns of interest:
+
+Health variables: * FATALITIES: approx. number of deaths * INJURIES:
+approx. number of injuries
+
+Economic variables:
+
+PROPDMG: approx. property damags PROPDMGEXP: the units for property
+damage value CROPDMG: approx. crop damages CROPDMGEXP: the units for
+crop damage value Events - target variable:
+
+EVTYPE: weather event (Tornados, Wind, Snow, Flood, etc..) Extract
+variables of interest from original data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars <-}\StringTok{ }\KeywordTok{c}\NormalTok{( }\StringTok{"EVTYPE"}\NormalTok{, }\StringTok{"FATALITIES"}\NormalTok{, }\StringTok{"INJURIES"}\NormalTok{, }\StringTok{"PROPDMG"}\NormalTok{, }\StringTok{"PROPDMGEXP"}\NormalTok{, }\StringTok{"CROPDMG"}\NormalTok{, }\StringTok{"CROPDMGEXP"}\NormalTok{)}
+\NormalTok{mydata <-}\StringTok{ }\NormalTok{storm.data[, vars]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                EVTYPE FATALITIES INJURIES PROPDMG PROPDMGEXP CROPDMG CROPDMGEXP
+## 902292 WINTER WEATHER          0        0       0          K       0          K
+## 902293      HIGH WIND          0        0       0          K       0          K
+## 902294      HIGH WIND          0        0       0          K       0          K
+## 902295      HIGH WIND          0        0       0          K       0          K
+## 902296       BLIZZARD          0        0       0          K       0          K
+## 902297     HEAVY SNOW          0        0       0          K       0          K
+\end{verbatim}
+
+\hypertarget{checking-for-missing-values}{%
+\subsection{Checking for missing
+values}\label{checking-for-missing-values}}
+
+Check for missing values in health variables - there is no NA's in the
+data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{FATALITIES))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{INJURIES))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+Check for missing values in economic variables for ``size'' of damage -
+there is no NA's in the data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{PROPDMG))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{CROPDMG))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+Check for missing values in economic variables for units damage - there
+is no NA's in the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\hypertarget{transforming-extracted-variables}{%
+\subsection{Transforming extracted
+variables}\label{transforming-extracted-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{EVTYPE), }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##               HAIL          TSTM WIND  THUNDERSTORM WIND            TORNADO 
+##             288661             219940              82563              60652 
+##        FLASH FLOOD              FLOOD THUNDERSTORM WINDS          HIGH WIND 
+##              54277              25326              20843              20212 
+##          LIGHTNING         HEAVY SNOW 
+##              15754              15708
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create a new variable EVENT to transform variable EVTYPE in groups}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT <-}\StringTok{ "OTHER"}
+\CommentTok{# group by keyword in EVTYPE}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"HAIL"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "HAIL"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"HEAT"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "HEAT"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"FLOOD"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "FLOOD"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"WIND"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "WIND"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"STORM"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "STORM"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"SNOW"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "SNOW"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"TORNADO"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "TORNADO"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"WINTER"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "WINTER"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{EVENT[}\KeywordTok{grep}\NormalTok{(}\StringTok{"RAIN"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{EVTYPE, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "RAIN"}
+\CommentTok{# listing the transformed event types }
+\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{EVENT), }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    HAIL    WIND   STORM   FLOOD TORNADO   OTHER  WINTER    SNOW    RAIN    HEAT 
+##  289270  255362  113156   82686   60700   48970   19604   17660   12241    2648
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP), }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##             K      M      0      B      5      1      2      ?      m 
+## 465934 424665  11330    216     40     28     25     13      8      7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP), }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##             K      M      k      0      B      ?      2      m   <NA> 
+## 618413 281832   1994     21     19      9      7      1      1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP)}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP[}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP)] <-}\StringTok{ }\DecValTok{0} \CommentTok{# NA's considered as dollars}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP[}\OperatorTok{!}\KeywordTok{grepl}\NormalTok{(}\StringTok{"K|M|B"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ }\DecValTok{0} \CommentTok{# everything exept K,M,B is dollar}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP[}\KeywordTok{grep}\NormalTok{(}\StringTok{"K"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "3"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP[}\KeywordTok{grep}\NormalTok{(}\StringTok{"M"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "6"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP[}\KeywordTok{grep}\NormalTok{(}\StringTok{"B"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "9"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP))}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{property.damage <-}\StringTok{ }\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMG }\OperatorTok{*}\StringTok{ }\DecValTok{10}\OperatorTok{^}\NormalTok{mydata}\OperatorTok{$}\NormalTok{PROPDMGEXP}
+
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP)}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP[}\KeywordTok{is.na}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP)] <-}\StringTok{ }\DecValTok{0} \CommentTok{# NA's considered as dollars}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP[}\OperatorTok{!}\KeywordTok{grepl}\NormalTok{(}\StringTok{"K|M|B"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ }\DecValTok{0} \CommentTok{# everything exept K,M,B is dollar}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP[}\KeywordTok{grep}\NormalTok{(}\StringTok{"K"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "3"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP[}\KeywordTok{grep}\NormalTok{(}\StringTok{"M"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "6"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP[}\KeywordTok{grep}\NormalTok{(}\StringTok{"B"}\NormalTok{, mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)] <-}\StringTok{ "9"}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP))}
+\NormalTok{mydata}\OperatorTok{$}\NormalTok{crop.damage <-}\StringTok{ }\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMG }\OperatorTok{*}\StringTok{ }\DecValTok{10}\OperatorTok{^}\NormalTok{mydata}\OperatorTok{$}\NormalTok{CROPDMGEXP}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{property.damage), }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      0   5000  10000   1000   2000  25000  50000   3000  20000  15000 
+## 663123  31731  21787  17544  17186  17104  13596  10364   9179   8617
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(mydata}\OperatorTok{$}\NormalTok{crop.damage), }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      0   5000  10000  50000  1e+05   1000   2000  25000  20000  5e+05 
+## 880198   4097   2349   1984   1233    956    951    830    758    721
+\end{verbatim}
+
+\hypertarget{analysis}{%
+\subsection{Analysis}\label{analysis}}
+
+\hypertarget{aggregating-events-for-public-health-variables}{%
+\subsection{Aggregating events for public health
+variables}\label{aggregating-events-for-public-health-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# aggregate FATALITIES and INJURIES by type of EVENT}
+\NormalTok{agg.fatalites.and.injuries <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(mydata, .(EVENT), summarize, }\DataTypeTok{Total =} \KeywordTok{sum}\NormalTok{(FATALITIES }\OperatorTok{+}\StringTok{ }\NormalTok{INJURIES,  }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{agg.fatalites.and.injuries}\OperatorTok{$}\NormalTok{type <-}\StringTok{ "fatalities and injuries"}
+  
+\CommentTok{# aggregate FATALITIES by type of EVENT}
+\NormalTok{agg.fatalities <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(mydata, .(EVENT), summarize, }\DataTypeTok{Total =} \KeywordTok{sum}\NormalTok{(FATALITIES, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{agg.fatalities}\OperatorTok{$}\NormalTok{type <-}\StringTok{ "fatalities"}
+
+\CommentTok{# aggregate INJURIES by type of EVENT}
+\NormalTok{agg.injuries <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(mydata, .(EVENT), summarize, }\DataTypeTok{Total =} \KeywordTok{sum}\NormalTok{(INJURIES, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{agg.injuries}\OperatorTok{$}\NormalTok{type <-}\StringTok{ "injuries"}
+
+\CommentTok{# combine all}
+\NormalTok{agg.health <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(agg.fatalities, agg.injuries)}
+
+\NormalTok{health.by.event <-}\StringTok{ }\KeywordTok{join}\NormalTok{ (agg.fatalities, agg.injuries, }\DataTypeTok{by=}\StringTok{"EVENT"}\NormalTok{, }\DataTypeTok{type=}\StringTok{"inner"}\NormalTok{)}
+\NormalTok{health.by.event}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      EVENT Total       type Total     type
+## 1    FLOOD  1524 fatalities  8602 injuries
+## 2     HAIL    15 fatalities  1371 injuries
+## 3     HEAT  3138 fatalities  9224 injuries
+## 4    OTHER  2626 fatalities 12224 injuries
+## 5     RAIN   114 fatalities   305 injuries
+## 6     SNOW   164 fatalities  1164 injuries
+## 7    STORM   416 fatalities  5339 injuries
+## 8  TORNADO  5661 fatalities 91407 injuries
+## 9     WIND  1209 fatalities  9001 injuries
+## 10  WINTER   278 fatalities  1891 injuries
+\end{verbatim}
+
+\hypertarget{aggregating-events-for-economic-variables}{%
+\subsection{Aggregating events for economic
+variables}\label{aggregating-events-for-economic-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# aggregate PropDamage and CropDamage by type of EVENT}
+\NormalTok{agg.propdmg.and.cropdmg <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(mydata, .(EVENT), summarize, }\DataTypeTok{Total =} \KeywordTok{sum}\NormalTok{(property.damage }\OperatorTok{+}\StringTok{ }\NormalTok{crop.damage,  }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{agg.propdmg.and.cropdmg}\OperatorTok{$}\NormalTok{type <-}\StringTok{ "property and crop damage"}
+
+\CommentTok{# aggregate PropDamage by type of EVENT}
+\NormalTok{agg.prop <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(mydata, .(EVENT), summarize, }\DataTypeTok{Total =} \KeywordTok{sum}\NormalTok{(property.damage, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{agg.prop}\OperatorTok{$}\NormalTok{type <-}\StringTok{ "property"}
+
+\CommentTok{# aggregate INJURIES by type of EVENT}
+\NormalTok{agg.crop <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(mydata, .(EVENT), summarize, }\DataTypeTok{Total =} \KeywordTok{sum}\NormalTok{(crop.damage, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{agg.crop}\OperatorTok{$}\NormalTok{type <-}\StringTok{ "crop"}
+
+\CommentTok{# combine all}
+\NormalTok{agg.economic <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(agg.prop, agg.crop)}
+
+
+\NormalTok{economic.by.event <-}\StringTok{ }\KeywordTok{join}\NormalTok{ (agg.prop, agg.crop, }\DataTypeTok{by=}\StringTok{"EVENT"}\NormalTok{, }\DataTypeTok{type=}\StringTok{"inner"}\NormalTok{)}
+\NormalTok{economic.by.event}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      EVENT        Total     type       Total type
+## 1    FLOOD 167502193929 property 12266906100 crop
+## 2     HAIL  15733043048 property  3046837473 crop
+## 3     HEAT     20325750 property   904469280 crop
+## 4    OTHER  97246712337 property 23588880870 crop
+## 5     RAIN   3270230192 property   919315800 crop
+## 6     SNOW   1024169752 property   134683100 crop
+## 7    STORM  66304415393 property  6374474888 crop
+## 8  TORNADO  58593098029 property   417461520 crop
+## 9     WIND  10847166618 property  1403719150 crop
+## 10  WINTER   6777295251 property    47444000 crop
+\end{verbatim}
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+\hypertarget{across-the-united-states-which-types-of-events-are-most-harmful-with-respect-to-population-health}{%
+\subsection{Across the United States, which types of events are most
+harmful with respect to population
+health?}\label{across-the-united-states-which-types-of-events-are-most-harmful-with-respect-to-population-health}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# transform EVENT to factor variable for health variables}
+\NormalTok{agg.health}\OperatorTok{$}\NormalTok{EVENT <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(agg.health}\OperatorTok{$}\NormalTok{EVENT)}
+
+\CommentTok{# plot FATALITIES and INJURIES by EVENT}
+\NormalTok{health.plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(agg.health, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ EVENT, }\DataTypeTok{y =}\NormalTok{ Total, }\DataTypeTok{fill =}\NormalTok{ type)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{coord_flip}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Event Type"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Total number of health impact"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Weather event types impact on public health"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+\KeywordTok{print}\NormalTok{(health.plot)  }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Reproducible-Research---Course-Project-2_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+The most harmful weather event for health (in number of total fatalites
+and injuries) is, by far, a tornado.
+
+\hypertarget{across-the-united-states-which-types-of-events-have-the-greatest-economic-consequences}{%
+\subsection{Across the United States, which types of events have the
+greatest economic
+consequences?}\label{across-the-united-states-which-types-of-events-have-the-greatest-economic-consequences}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# # transform EVENT to factor variable for economic variables}
+\NormalTok{agg.economic}\OperatorTok{$}\NormalTok{EVENT <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(agg.economic}\OperatorTok{$}\NormalTok{EVENT)}
+
+\CommentTok{# plot PROPERTY damage and CROP damage by EVENT}
+\NormalTok{economic.plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(agg.economic, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ EVENT, }\DataTypeTok{y =}\NormalTok{ Total, }\DataTypeTok{fill =}\NormalTok{ type)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{coord_flip}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Event Type"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Total damage in dollars"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Weather event types impact on property and crop damage"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+\KeywordTok{print}\NormalTok{(economic.plot) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Reproducible-Research---Course-Project-2_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+The most devastating weather event with the greatest economic
+cosequences (to property and crops) is a flood.
+
+\end{document}
